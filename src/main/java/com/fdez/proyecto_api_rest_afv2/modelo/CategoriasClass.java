@@ -1,5 +1,6 @@
 package com.fdez.proyecto_api_rest_afv2.modelo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
@@ -12,13 +13,13 @@ import java.util.Objects;
 public class CategoriasClass {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "id", nullable = false, updatable = false, insertable = false)
     private int id;
     @Basic
     @Column(name = "nombre", nullable = false, length = 50)
     private String nombre;
     @OneToMany(mappedBy = "categoriasByCategoriaId")
-    @JsonManagedReference
+    @JsonIgnore
     private Collection<ProductosClass> productosById;
 
     public int getId() {

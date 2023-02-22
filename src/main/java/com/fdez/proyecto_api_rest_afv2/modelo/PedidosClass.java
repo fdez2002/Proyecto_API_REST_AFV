@@ -1,5 +1,6 @@
 package com.fdez.proyecto_api_rest_afv2.modelo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
@@ -21,7 +22,7 @@ public class PedidosClass {
     @Column(name = "fecha", nullable = false)
     private Date fecha;
     @OneToMany(mappedBy = "pedidosByPedidoId")
-    @JsonManagedReference
+    @JsonIgnore
     private Collection<ProductosPedidosClass> productosPedidosById;
 
     public int getId() {

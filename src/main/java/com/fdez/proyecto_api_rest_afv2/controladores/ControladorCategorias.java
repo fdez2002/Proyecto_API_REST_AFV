@@ -37,9 +37,11 @@ public class ControladorCategorias {
             @Validated @RequestBody CategoriasClass categoria ){
         return categoriasDAO.save(categoria);
     }
+    /*{"id":7,"nombre":"iPhone 12 Pro Max","descripcion":"El último iPhone de Apple con pantalla OLED y cámara triple","precio":1099.99,"categoriaId":5}
+    * {"id":8,"nombre":"Smartphones"}*/
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> borrarEmpleado(
+    public ResponseEntity<?> borrarCategoria(
             @PathVariable(value = "id") int id
     ){
         Optional<CategoriasClass> categoria = categoriasDAO.findById(id);

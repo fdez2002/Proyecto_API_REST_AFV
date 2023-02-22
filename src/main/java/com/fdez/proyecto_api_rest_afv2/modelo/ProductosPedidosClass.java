@@ -1,6 +1,7 @@
 package com.fdez.proyecto_api_rest_afv2.modelo;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Objects;
@@ -22,11 +23,11 @@ public class ProductosPedidosClass {
     private Integer cantidad;
     @ManyToOne
     @JoinColumn(name = "producto_id", referencedColumnName = "id", nullable = false, updatable = false, insertable = false)
-    @JsonBackReference
+    @JsonIgnore
     private ProductosClass productosByProductoId;
     @ManyToOne
     @JoinColumn(name = "pedido_id", referencedColumnName = "id", nullable = false, updatable = false, insertable = false)
-    @JsonBackReference
+    @JsonIgnore
     private PedidosClass pedidosByPedidoId;
 
     public int getProductoId() {

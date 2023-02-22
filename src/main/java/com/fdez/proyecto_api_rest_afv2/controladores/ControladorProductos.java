@@ -36,8 +36,8 @@ public class ControladorProductos {
 
     @PostMapping
     public ProductosClass guardarProducto(
-            @Validated @RequestBody ProductosClass categoria ){
-        return productosDAO.save(categoria);
+            @Validated @RequestBody ProductosClass producto ){
+        return productosDAO.save(producto);
     }
 
     @DeleteMapping("/{id}")
