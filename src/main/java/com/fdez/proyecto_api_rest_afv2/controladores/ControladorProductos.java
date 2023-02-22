@@ -35,9 +35,15 @@ public class ControladorProductos {
     }
 
     @PostMapping
-    public ProductosClass guardarProducto(
+    public ResponseEntity<?> guardarProducto(
             @Validated @RequestBody ProductosClass producto ){
-        return productosDAO.save(producto);
+
+        if(productosDAO.findById(producto.getCategoriaId()).isPresent()){
+            return ResponseEntity.ok(productosDAO.save(producto));
+        }else {
+            return ResponseEntity.badRequest().body("El id de la categoria no existe");
+        }
+        //return productosDAO.save(producto);
     }
 
     @DeleteMapping("/{id}")
