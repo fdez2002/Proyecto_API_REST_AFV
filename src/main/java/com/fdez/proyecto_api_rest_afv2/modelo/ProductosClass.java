@@ -1,5 +1,8 @@
 package com.fdez.proyecto_api_rest_afv2.modelo;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -23,12 +26,14 @@ public class ProductosClass {
     @Column(name = "precio", nullable = true, precision = 2)
     private BigDecimal precio;
     @Basic
-    @Column(name = "categoria_id", nullable = true)
+    @Column(name = "categoria_id", nullable = true, updatable = false, insertable = false)
     private Integer categoriaId;
     @ManyToOne
     @JoinColumn(name = "categoria_id", referencedColumnName = "id")
+    @JsonBackReference
     private CategoriasClass categoriasByCategoriaId;
     @OneToMany(mappedBy = "productosByProductoId")
+    @JsonManagedReference
     private Collection<ProductosPedidosClass> productosPedidosById;
 
     public int getId() {

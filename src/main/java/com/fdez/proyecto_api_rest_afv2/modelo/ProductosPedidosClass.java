@@ -1,5 +1,6 @@
 package com.fdez.proyecto_api_rest_afv2.modelo;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.util.Objects;
@@ -14,16 +15,18 @@ public class ProductosPedidosClass {
     private int productoId;
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "pedido_id", nullable = false)
+    @Column(name = "pedido_id", nullable = false, updatable = false, insertable = false)
     private int pedidoId;
     @Basic
     @Column(name = "cantidad", nullable = true)
     private Integer cantidad;
     @ManyToOne
-    @JoinColumn(name = "producto_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "producto_id", referencedColumnName = "id", nullable = false, updatable = false, insertable = false)
+    @JsonBackReference
     private ProductosClass productosByProductoId;
     @ManyToOne
-    @JoinColumn(name = "pedido_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "pedido_id", referencedColumnName = "id", nullable = false, updatable = false, insertable = false)
+    @JsonBackReference
     private PedidosClass pedidosByPedidoId;
 
     public int getProductoId() {

@@ -1,5 +1,7 @@
 package com.fdez.proyecto_api_rest_afv2.modelo;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.Collection;
@@ -16,6 +18,7 @@ public class CategoriasClass {
     @Column(name = "nombre", nullable = false, length = 50)
     private String nombre;
     @OneToMany(mappedBy = "categoriasByCategoriaId")
+    @JsonManagedReference
     private Collection<ProductosClass> productosById;
 
     public int getId() {
@@ -46,11 +49,9 @@ public class CategoriasClass {
     public int hashCode() {
         return Objects.hash(id, nombre);
     }
-
     public Collection<ProductosClass> getProductosById() {
         return productosById;
     }
-
     public void setProductosById(Collection<ProductosClass> productosById) {
         this.productosById = productosById;
     }
