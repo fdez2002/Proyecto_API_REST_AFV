@@ -1,4 +1,4 @@
-package modelo;
+package com.fdez.proyecto_api_rest_afv2.modelo;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
