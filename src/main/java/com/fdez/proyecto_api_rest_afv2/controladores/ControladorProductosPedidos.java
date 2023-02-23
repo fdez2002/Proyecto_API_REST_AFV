@@ -17,6 +17,10 @@ public class ControladorProductosPedidos {
     @Autowired
     private IProductosPedidosDAO propeDAO;
 
+    /**
+     *
+     * @return
+     */
     @GetMapping
     public List<ProductosPedidosClass> buscarprope(){return (List<ProductosPedidosClass>) propeDAO.findAll();}
 
@@ -32,25 +36,23 @@ public class ControladorProductosPedidos {
             return ResponseEntity.notFound().build();
         }
     }
-    @GetMapping("/{pedido_id}")
-    public ResponseEntity<ProductosPedidosClass> buscarproductoPedido_pedidoId(
-            @PathVariable(value = "pedido_id") int pedido_id
-    ){
-        Optional<ProductosPedidosClass> prope = propeDAO.findById(pedido_id);
 
-        if(prope.isPresent()){
-            return ResponseEntity.ok().body(prope.get());
-        }else{
-            return ResponseEntity.notFound().build();
-        }
-    }
-
+    /**
+     *
+     * @param productoPed
+     * @return
+     */
     @PostMapping
-    public ProductosPedidosClass guardarProducto(
+    public ProductosPedidosClass guardarProductoPedido(
             @Validated @RequestBody ProductosPedidosClass productoPed ){
         return propeDAO.save(productoPed);
     }
 
+    /**
+     *
+     * @param producto_id
+     * @return
+     */
     @DeleteMapping("/{producto_id}")
     public ResponseEntity<?> borrarProductoPe_producto_Id(
             @PathVariable(value = "producto_id") int producto_id
@@ -64,20 +66,13 @@ public class ControladorProductosPedidos {
             return ResponseEntity.notFound().build();
         }
     }
-    @DeleteMapping("/{pedido_id}")
-    public ResponseEntity<?> borrarProductoPe_pedido_Id(
-            @PathVariable(value = "pedido_id") int pedido_id
-    ){
-        Optional<ProductosPedidosClass> produPe = propeDAO.findById(pedido_id);
 
-        if (produPe.isPresent()){
-            propeDAO.deleteById(pedido_id);
-            return ResponseEntity.ok().body("Borrado");
-        }else {
-            return ResponseEntity.notFound().build();
-        }
-    }
-
+    /**
+     *
+     * @param pedido_id
+     * @param productoPedidoedit
+     * @return
+     */
     @PutMapping("/{pedido_id}")
     public ResponseEntity<ProductosPedidosClass> editarProductoPorId(
             @PathVariable(value = "pedido_id") int pedido_id,

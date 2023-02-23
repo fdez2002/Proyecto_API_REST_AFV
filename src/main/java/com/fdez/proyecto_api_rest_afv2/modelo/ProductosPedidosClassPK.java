@@ -9,11 +9,11 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class ProductosPedidosClassPK implements Serializable {
-    @Column(name = "producto_id", nullable = false)
+    @Column(name = "producto_id", nullable = false, updatable = false, insertable = false)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int productoId;
-    @Column(name = "pedido_id", nullable = false)
+    @Column(name = "pedido_id", nullable = false, updatable = false, insertable = false)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int pedidoId;

@@ -16,17 +16,17 @@ public class ProductosPedidosClass {
     private int productoId;
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "pedido_id", nullable = false, updatable = false, insertable = false)
+    @Column(name = "pedido_id", nullable = false)
     private int pedidoId;
     @Basic
     @Column(name = "cantidad", nullable = true)
     private Integer cantidad;
     @ManyToOne
-    @JoinColumn(name = "producto_id", referencedColumnName = "id", nullable = false, updatable = false, insertable = false)
+    @JoinColumn(name = "producto_id", referencedColumnName = "id")
     @JsonIgnore
     private ProductosClass productosByProductoId;
     @ManyToOne
-    @JoinColumn(name = "pedido_id", referencedColumnName = "id", nullable = false, updatable = false, insertable = false)
+    @JoinColumn(name = "pedido_id", referencedColumnName = "id")
     @JsonIgnore
     private PedidosClass pedidosByPedidoId;
 
